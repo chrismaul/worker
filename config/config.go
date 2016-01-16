@@ -57,6 +57,9 @@ var (
 		}),
 		NewConfigDef("AmqpInsecure", &cli.BoolFlag{
 			Usage: `Whether to connect to the AMQP server without verifying TLS certificates (only valid for "amqp" queue type)`,
+    }),
+		NewConfigDef("AmqpTlsCert", nil, &cli.StringFlag{
+			Usage: `The TLS certificate used to connet to the AMQP server`,
 		}),
 		NewConfigDef("BaseDir", &cli.StringFlag{
 			Value: defaultBaseDir,
@@ -261,7 +264,11 @@ type Config struct {
 	ProviderName    string `config:"provider-name"`
 	QueueType       string `config:"queue-type"`
 	AmqpURI         string `config:"amqp-uri"`
+<<<<<<< HEAD
 	AmqpInsecure    bool   `config:"amqp-insecure"`
+=======
+	AmqpTlsCert     string `config:"amqp-tls-cert"`
+>>>>>>> ea11f25... Added the feature to support amqp to use custom TLS cert
 	BaseDir         string `config:"base-dir"`
 	PoolSize        int    `config:"pool-size"`
 	BuildAPIURI     string `config:"build-api-uri"`
