@@ -45,7 +45,7 @@ var (
 	defaultDockerNumCPUer       dockerNumCPUer = &stdlibNumCPUer{}
 	defaultDockerSSHDialTimeout                = 5 * time.Second
 	defaultInspectInterval                     = 500 * time.Millisecond
-	defaultExecCmd                             = "bash /home/travis/build.sh"
+	defaultExecCmd                             = "bash /home/travis/job-script/build.sh"
 	defaultTmpfsMap                            = map[string]string{"/run": "rw,nosuid,nodev,exec,noatime,size=65536k"}
 	dockerHelp                                 = map[string]string{
 		"ENDPOINT / HOST":     "[REQUIRED] tcp or unix address for connecting to Docker",
@@ -624,7 +624,7 @@ func (i *dockerInstance) uploadScriptNative(ctx gocontext.Context, script []byte
 	tarBuf := &bytes.Buffer{}
 	tw := tar.NewWriter(tarBuf)
 	err := tw.WriteHeader(&tar.Header{
-		Name: "/home/travis/build.sh",
+		Name: "/home/travis/job-script/build.sh",
 		Mode: 0755,
 		Size: int64(len(script)),
 	})
