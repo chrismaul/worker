@@ -373,8 +373,12 @@ func (p *dockerProvider) Start(ctx gocontext.Context, startAttributes *StartAttr
 		imageName = startAttributes.ImageName
 	} else {
 		selectedImageID, err := p.imageSelector.Select(ctx, &image.Params{
-			Language: startAttributes.Language,
 			Infra:    "docker",
+			Language: startAttributes.Language,
+			OsxImage: startAttributes.OsxImage,
+			Dist:     startAttributes.Dist,
+			Group:    startAttributes.Group,
+			OS:       startAttributes.OS,
 		})
 		if err != nil {
 			logger.WithField("err", err).Error("couldn't select image")
